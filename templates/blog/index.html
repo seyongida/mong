@@ -1,0 +1,15 @@
+<!-- index.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Home Page{% endblock %}
+
+{% block extrahead %}
+  <link rel="stylesheet" href="{% static 'css/index.css' %}"> 
+{% endblock %}
+
+{% block content %}
+    <h1>Welcome to my website!</h1>
+    <button>Bootstrap5 미적용 버튼</button>
+    <button class="btn btn-primary">Bootstrap5 적용 버튼</button>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% load static %}
+{% load django_bootstrap5 %}
+<meta charset="UTF-8">
+<title>{% block title %}My Website{% endblock %}</title>
+<link rel="stylesheet" href="{% static 'base.css' %}">
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% block extrahead %}{% endblock %}
