@@ -40,8 +40,10 @@ SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
-
 ALLOWED_HOSTS = ['.pythonanywhere.com']
+
+# DEBUG = True
+# ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -55,7 +57,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third apps
     # 'django_extensions',
-    'django_bootstrap5',
+    # 'django_bootstrap5',
+    'bootstrap4',
     # local apps
     'blog',
     'accounts',
