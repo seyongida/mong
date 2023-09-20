@@ -1,27 +1,33 @@
-<!-- blogapp/templates/board2.html -->
 {% extends 'base.html' %}
+{% load static %}
 {% load django_bootstrap5 %}
 {% block content %}
 <div style="width:1200px; margin:0px auto;">
-    <h2 style="text-align:center;">회원가입 게시판(board2)</h2><br>
-    {% if board2 %}
+    <h2 style="text-align:center;">Board3</h2><br>
+    {% if board3 %}
     <table style="text-align:center; width:1200px; border:1px solid black;" class="table">
         <thead>
             <tr class="th_color">
                 <th>번호</th>
                 <th>제목</th>
                 <th>내용</th>
+                <th>이미지</th>
                 <th>작성자</th>
                 <th>수정하기</th>
                 <th>삭제하기</th>
             </tr>
         </thead>
-            {% for board_list in board2 %}
+            {% for board_list in board3 %}
             <tbody>
                 <tr class="td_color" >
                     <td>{{ board_list.pk }}</td>
                     <td>{{ board_list.title }}</td>
                     <td>{{ board_list.content }}</td>
+                    <td>
+                        {% if board_list.imgfile %}
+                            <img src= "{{board_list.imgfile.url}}" width=200>
+                        {% endif %}
+                    </td>
                     <td>{{ board_list.user }}</td>
                     <td><button class="btn btn-secondary btn-sm rounded-pill" onclick="location.href='/edit/{{board_list.pk}}'">수정</button></td>
                     <td><button class="btn btn-danger btn-sm rounded-pill" onclick="location.href='/delete/{{board_list.pk}}'">삭제</button></td>
@@ -30,12 +36,12 @@
             {% endfor %}
     </table>
     {% endif %}
-    <div style="width:500px; margin:0px auto;">
-        <form action="" method="POST" style="max-width:500px;">
+    <div class="container">
+        <form method="POST" action="{% url 'board3' %}" enctype="multipart/form-data">
             {% csrf_token %}
-            {% bootstrap_form boardForm2 %}
-            <button type="submit" class="btn btn-primary rounded-pill col-12">POST</button>
+            {% bootstrap_form boardForm3 %}
+            <input type="submit" class="btn btn-primary col-12" value="제출">
         </form>
     </div>
 </div>
-{% endblock %}
+{% endblock%}

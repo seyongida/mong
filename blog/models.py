@@ -9,6 +9,7 @@ class Post(models.Model):
     def __str__(self):
             return self.content
         
+        
 class Board(models.Model):
     title = models.CharField(max_length=20, null=True)
     content = models.TextField()
@@ -18,3 +19,12 @@ class Board2(models.Model):
     title = models.CharField(max_length=20, null=True)
     content = models.TextField()
     user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    
+class Board3(models.Model):
+    title = models.CharField(max_length=40, null=True)
+    content = models.TextField()
+    user = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+    imgfile = models.ImageField(null=True, upload_to="", blank=True)
+    
+    def __str__(self):
+        return self.title

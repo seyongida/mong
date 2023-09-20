@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
-from .models import Post
+from .models import Post, Board3
 from .forms import *
 
 def index(request):
@@ -65,11 +65,34 @@ def board2(request):
         boardForm = BoardForm2
         board = Board2.objects.all()
         context = {
-            'boardForm': boardForm,
-            'board': board,
+            'boardForm2': boardForm,
+            'board2': board,
         }
         return render(request, 'blog/board2.html', context)
 
+def board3(request):
+    if request.method == 'POST':
+        title = request.POST['title']
+        content = request.POST['content']
+        user = request.user
+        img = request.FILES["imgfile"]
+        board = Board3(
+            title=title,
+            content=content,
+            user=user,
+            imgfile=img,
+        )
+        board.save()
+        return redirect('board3')
+    else:
+        boardForm = BoardForm3
+        board = Board3.objects.all()
+        context = {
+            'boardForm3': boardForm,
+            'board3': board,
+        }
+        return render(request, 'blog/board3.html', context)
+    
 def boardEdit(request, pk):
     board = Board.objects.get(id=pk)
     if request.method == "POST":
@@ -100,3 +123,5 @@ def my_view(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request, 'blog/page_list.html', {'page_obj': page_obj})
+
+
