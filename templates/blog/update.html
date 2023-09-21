@@ -1,0 +1,14 @@
+<!-- blogapp/templates/update.html -->
+{% extends 'base.html' %}
+{% load bootstrap4 %}
+{% block content %}
+
+<div class="container">
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% bootstrap_form boardForm3 %}
+        <input class="btn btn-dark rounded-pill col-12" type="submit" value="수정하기">
+    </form>
+</div>
+
+{% endblock %}

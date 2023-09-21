@@ -98,24 +98,49 @@ def board3(request):
         }
         return render(request, 'blog/board3.html', context)
     
+# def boardEdit(request, pk):
+#     board = Board3.objects.get(id=pk)
+#     if request.method == "POST":
+#         board.title = request.POST['title']
+#         board.content = request.POST['content']
+#         board.user = request.user
+#         try:
+#             board.img = request.FILES["imgfile"]
+#         except:
+#             pass
+        
+#         board.save()
+#         return redirect('board3')
+
+#     else:
+#         boardForm = BoardForm3
+#         board = Board3.objects.get(id=pk)
+#         context = {
+#             'boardForm3': boardForm,
+#             'board3': board,
+#         }
+#         return render(request, 'blog/update.html', context)
+
 def boardEdit(request, pk):
-    board = Board.objects.get(id=pk)
+    board = Board3.objects.get(id=pk)
     if request.method == "POST":
-        board.title = request.POST['title']
-        board.content = request.POST['content']
-        board.user = request.user
-
-        board.save()
-        return redirect('board')
-
+        boardForm = BoardForm3(request.POST, instance=board)
+        if boardForm.is_valid():
+            boardForm.save()
+            return redirect('board3')
     else:
-        boardForm = BoardForm
-        return render(request, 'update.html', {'boardForm':boardForm})
+        boardForm = BoardForm3(instance=board)
 
+    context = {
+        'boardForm3': boardForm,
+        'board3': board,
+    }
+    return render(request, 'blog/update.html', context)
+    
 def boardDelete(request, pk):
-    board = Board.objects.get(id=pk)
+    board = Board3.objects.get(id=pk)
     board.delete()
-    return redirect('board')
+    return redirect('board3')
 
 def select_board(request):
     month_text = request.GET.get('month')
