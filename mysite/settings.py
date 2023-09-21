@@ -14,6 +14,7 @@ from pathlib import Path
 import os 
 import json
 from django.core.exceptions import ImproperlyConfigured
+# import bootstrap4
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,11 +40,11 @@ SECRET_KEY = get_secret("SECRET_KEY")
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-ALLOWED_HOSTS = ['.pythonanywhere.com']
+# DEBUG = False
+# ALLOWED_HOSTS = ['.pythonanywhere.com']
 
-# DEBUG = True
-# ALLOWED_HOSTS = ['127.0.0.1']
+DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -57,8 +58,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third apps
     # 'django_extensions',
-    # 'django_bootstrap5',
+    'django_bootstrap5',
     'bootstrap4',
+    # 'django_bootstrap4',
     # local apps
     'blog',
     'accounts',

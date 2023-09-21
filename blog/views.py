@@ -75,7 +75,12 @@ def board3(request):
         title = request.POST['title']
         content = request.POST['content']
         user = request.user
-        img = request.FILES["imgfile"]
+        img = ""
+        try:
+            img = request.FILES["imgfile"]
+        except:
+            pass
+        
         board = Board3(
             title=title,
             content=content,
